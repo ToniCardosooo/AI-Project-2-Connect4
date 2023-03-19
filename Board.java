@@ -36,6 +36,8 @@ public class Board{
 
     public Board getParent(){return parent;}
 
+    public int[] getPiecesCol(){return pieces_column;}
+
     // setters
     public void setParent(Board p){parent = p;}
 
