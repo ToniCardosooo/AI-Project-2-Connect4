@@ -32,7 +32,12 @@ public class Game {
     }
 
 
-    private static boolean isFinished(){return false;}
+    private static boolean isFinished(){
+        if (Heuristics.getScore(cur_b) == 512 || Heuristics.getScore(cur_b) == -512) return true;
+        boolean full = true;
+        for (int i = 0; i < 7; i++) if (!cur_b.verifyColumnFull(i)) full = false;
+        return full;
+    }
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
@@ -65,10 +70,16 @@ public class Game {
             if (game.getPlayer() == 1){
                 System.out.println(game.getBoard());
                 System.out.println("It is now X's turn.");
-                System.out.println("Make a move by choosing your coordinated to play (1 to 7).");
+                System.out.println("Make a move by choosing your coordinate to play (1 to 7).");
 
                 int col = in.nextInt() - 1;
                 Board b = game.getBoard();
+                while (b.makeMove(col, player) == null) {
+                    System.out.println("Invalid move.");
+                    System.out.println("Please choose your coordinate to play (1 to 7) on an available column.");
+                    col = in.nextInt() - 1;
+                    b = game.getBoard();
+                }
                 game.setBoard(b.makeMove(col, player));
                 game.switchPlayer();
             }

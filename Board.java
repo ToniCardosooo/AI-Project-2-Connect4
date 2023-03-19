@@ -17,10 +17,11 @@ public class Board{
         parent = null;
     }
 
-    private boolean verifyColumnFull(int col){
+    public boolean verifyColumnFull(int col){
         // if column 'col' is not full, return false
         // else return true
-        return (col >= 0 && col <= 7 && !(pieces_column[col] < 6));
+        if (col < 0 || col > 6) return true;
+        return (!(pieces_column[col] < 6));
     }
 
     //getters
