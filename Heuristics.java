@@ -3,12 +3,6 @@ public class Heuristics {
     private static int win(Board b){
         int[][] bb = b.getBoard();
 
-        int count = 0;
-        for (int i = 0; i < 7; i++) {
-            count += b.getPiecesCol()[i];
-        }
-        if (count < 7) return 0;
-
         //horizontal
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 4; j++) {
@@ -53,7 +47,16 @@ public class Heuristics {
     }
 
     private static int score(Board b){
-        if (win(b) != 0) return win(b)*512;
+        int count = 0;
+        for (int i = 0; i < 7; i++) {
+            count += b.getPiecesCol()[i];
+        }
+        if (count > 6) {
+            if (win(b) != 0) return win(b)*512;
+        }
+
+
+
         return 0;
     }
 
