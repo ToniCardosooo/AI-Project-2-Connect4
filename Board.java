@@ -2,8 +2,9 @@ public class Board{
     private int[][] b;
     private Board parent;
     private int[] pieces_column;
+    private int lastMove;
 
-    Board(int[][] in){
+    Board(int[][] in, int lm){
         b = new int[6][7];
         pieces_column = new int[7];
         for (int i = 0; i < 6; i++){
@@ -14,6 +15,7 @@ public class Board{
                     pieces_column[j]++;
             }
         }
+        lastMove = lm;
         parent = null;
     }
 
@@ -39,18 +41,19 @@ public class Board{
 
     public int[] getPiecesCol(){return pieces_column;}
 
+    public int getLastMove(){return lastMove;}
+
     // setters
     public void setParent(Board p){parent = p;}
 
 
     public Board makeMove(int col, int player){
         if (verifyColumnFull(col)) return null;
-        
         int n = pieces_column[col];
         int[][] newboard = getBoard();
         newboard[5-n][col] = player;
 
-        return new Board(newboard);
+        return new Board(newboard, col);
     }
 
     // to check if boards are equal
