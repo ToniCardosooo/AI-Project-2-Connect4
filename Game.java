@@ -14,7 +14,7 @@ public class Game {
             {0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0}
         };
-        cur_b = new Board(b);
+        cur_b = new Board(b, -1);
         player = 1;
         alg = a;
     }
