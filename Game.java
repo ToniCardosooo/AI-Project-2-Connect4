@@ -82,8 +82,8 @@ public class Game {
 
                 int col = -1;
                 if (game.getAlg() == 1){
-                    MiniMax move = new MiniMax(cur_b);
-                    col = move.GetMove();
+                    MiniMax minimax = new MiniMax(cur_b, 7);
+                    col = minimax.GetMove();
                 }
                 else if (game.getAlg() == 2){
                     // col = alphabeta
