@@ -12,7 +12,7 @@ public class MiniMax {
 
     // Getter 
     public int GetMove() { 
-        return MiniMaxSearch(board, depth, true); 
+        return MiniMaxSearch(board); 
     }
 
     // Function that gets all the available moves for that particular turn
@@ -22,6 +22,24 @@ public class MiniMax {
             if(!board.verifyColumnFull(i)) moves.add(i);
         }
         return moves;
+    }
+
+
+    private int MiniMaxSearch(Board board){
+        int value = 512;
+        int move = 0;
+
+        ArrayList<Integer> moves = getValidMoves(board);
+        for(int i=0; i<moves.size(); i++){
+            int m = moves.get(i);
+            Board child = board.makeMove(m, 1);
+            int score = MiniMaxSearch(child, depth, true);
+            if(score < value){
+                value = score;
+                move = m;
+            }
+        }
+        return move;
     }
 
     // MiniMax function
@@ -35,7 +53,7 @@ public class MiniMax {
         
         // Max playing
         if(MaxPlaying){ 
-            int value = -100000000;
+            int value = -10000000;
             int best_column = valid_moves.get(0);
 
             for(int i=0; i<valid_moves.size(); i++){
@@ -51,7 +69,7 @@ public class MiniMax {
 
         // Min playing
         else{
-            int value = 100000000;
+            int value = 10000000;
             int best_column = valid_moves.get(0);
 
             for(int i=0; i<valid_moves.size(); i++){
