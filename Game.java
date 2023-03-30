@@ -97,10 +97,10 @@ public class Game {
             }
         }
     
-        
-         if (Heuristics.getScore == 0):
+        System.out.println(game.getBoard());
+        if (Heuristics.getScore == 0):
                 System.out.println("It's a draw!");
-         else if (Heuristics.getScore == 512):
+        else if (Heuristics.getScore == 512):
                 System.out.println("Player X won!");
         else if (Heuristics.getScore == -512):
                 System.out.println("Player O won!");
