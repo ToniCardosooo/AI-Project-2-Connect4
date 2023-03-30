@@ -58,7 +58,7 @@ public class Game {
             return;
         }
 
-        while (!Heuristics.isFinished()){
+        while (!Heuristics.isFinished(cur_b)){
             if (game.getPlayer() == 1){
                 System.out.println(game.getBoard());
                 System.out.println("It is now X's turn.");
@@ -97,16 +97,14 @@ public class Game {
             }
         }
 
-        /*
-         * 
-         * if score == 0:
-         *      print "draw"
-         * if score == +512:
-         *      print "Player X won"
-         * if score == -512:
-         *      print "Player O won"
-         * 
-         */
+     
+        
+         if (Heuristics.getScore == 0):
+                System.out.println("It's a draw!");
+         else if (Heuristics.getScore == 512):
+                System.out.println("Player X won!");
+        else if (Heuristics.getScore == -512):
+                System.out.println("Player O won!");
         
         in.close();
     }
