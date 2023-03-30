@@ -89,7 +89,8 @@ public class Game {
                     // col = alphabeta
                 }
                 else if (game.getAlg() == 3){
-                    // col = mcts
+                    MCTS carlotes = new MCTS(cur_b);
+                    col = carlotes.playMCTS();
                 }
 
                 Board b = game.getBoard();
