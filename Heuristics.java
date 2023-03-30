@@ -51,13 +51,10 @@ public class Heuristics {
             }
         }
 
-        for (int i = 0; i < 7; i++) {
-            if (b.getPiecesCol()[i] < 4) return 0;
-        }
-
         //vertical
         for (int i = 3; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
+                if (b.getPiecesCol()[j] < 4) continue;
                 if (bb[i][j] != 0 && bb[i][j] == bb[i-1][j] && bb[i][j] == bb[i-2][j] && bb[i][j] == bb[i-3][j]) {
                     if (bb[i][j] == 1) return 1;
                     else return -1;
