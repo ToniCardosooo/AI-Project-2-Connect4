@@ -13,7 +13,9 @@ O programa foi compilado tanto em *Ubuntu 20.04 LTS* com *javac 11.0.17* como *m
 ### Instruções de Compilação e Execução
 
 Para poder executar cada problema é primeiro necessário compilar todos os ficheiros java. Para tal, utilize a seguinte instrução:
+
 `javac *.java`
+
 Após a compilação de todos os ficheiros, é possível, finalmente, executá-los. Foram desenvolvidos os seguintes algoritmos:
 - Minimax
 - Minimax com Alpha-Beta cuts
