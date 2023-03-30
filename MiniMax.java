@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class MiniMax {
     private Board board;
     private int depth;
@@ -9,8 +11,12 @@ public class MiniMax {
     }
 
     // Getter 
-    public int GetMove() { return MiniMaxSearch(board, depth, true); }
+    public int GetMove() { 
+        System.out.println(Heuristics.getScore(board));
+        return MiniMaxSearch(board, depth, true); 
+    }
 
+    /* 
     // Function that gets all the valid moves for this board
     private int[] getValidMoves(Board board){
         int count = 0;
@@ -25,14 +31,26 @@ public class MiniMax {
             if(!board.verifyColumnFull(j)) valid_moves[pos++] = j;
         }
         return valid_moves;
-    }    
+    }  
+    */
+    private int[] getValidMoves(Board board){
+        ArrayList<Integer> moves = new ArrayList<Integer>();
+        for(int i=0; i<6; i++){
+            if(!board.verifyColumnFull(i)) moves.add(i);
+        }
+        int[] valid_moves = new int[moves.size()];
+        for(int j=0; j<moves.size(); j++){
+            valid_moves[j] = moves.get(j);
+        }
+        return valid_moves;
+    }
 
     // MiniMax function
     private int MiniMaxSearch(Board board, int depth, Boolean MaxPlaying){ 
         int[] valid_moves = this.getValidMoves(board);
         
         // Winning move either from Max or Mini or depth limit has been reached 
-        if(depth == 0 || Math.abs(Heuristics.getScore(board)) == 512){
+        if(depth == 0 || Math.abs(Heuristics.getScore(board)) >= 512){
             return Heuristics.getScore(board);
         }
         
