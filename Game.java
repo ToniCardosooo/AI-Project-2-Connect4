@@ -96,8 +96,7 @@ public class Game {
                 game.switchPlayer();
             }
         }
-
-     
+    
         
          if (Heuristics.getScore == 0):
                 System.out.println("It's a draw!");
