@@ -82,7 +82,8 @@ public class Game {
 
                 int col = -1;
                 if (game.getAlg() == 1){
-                    // col = minimax
+                    MiniMax move = new MiniMax(cur_b);
+                    col = move.GetMove();
                 }
                 else if (game.getAlg() == 2){
                     // col = alphabeta
@@ -94,6 +95,7 @@ public class Game {
                 Board b = game.getBoard();
                 game.setBoard(b.makeMove(col, player));
                 game.switchPlayer();
+
             }
         }
     
