@@ -1,4 +1,11 @@
 public class Heuristics {
+    
+    public static boolean isFinished(Board b){
+        if (win(b) != 0) return true;
+        boolean full = true;
+        for (int i = 0; i < 7; i++) if (!b.verifyColumnFull(i)) full = false;
+        return full;
+    }
 
     private static int win(Board b){
         int[][] bb = b.getBoard();
@@ -82,9 +89,9 @@ public class Heuristics {
         for (int i = 0; i < 7; i++) {
             count += b.getPiecesCol()[i];
         }
-
         if (count > 6) {
-            if (win(b) != 0) return win(b)*512;
+            int s = win(b);
+            if (s != 0) return s*512;
         }
 
         int[][] bb = b.getBoard();
