@@ -24,7 +24,9 @@ Após a compilação de todos os ficheiros, é possível, finalmente, executá-l
 Para a execução de cada um, utilizar o seguinte formato de entrada:
 `java Game type`, onde "type" deve ser substituido pelo nome do algoritmo desejado.
 
-O programa irá aguardar o primeiro movimento do utilizador. O mesmo deve ser fornecido com um número de 1 a 7, representante da coluna onde se quer jogar. Exemplo:
+O programa irá aguardar o primeiro movimento do utilizador. O mesmo deve ser fornecido com um número de 1 a 7, representante da coluna onde se quer jogar. 
+
+Exemplo:
 
 `It is now X's turn.
 Make a move by choosing your coordinate to play (1 to 7).`
