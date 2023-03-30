@@ -1,15 +1,13 @@
-import java.util.Random;
-
 public class MiniMax {
     private Board board;
     private int depth;
 
-    // Construtor
+    // Constructor
     MiniMax(Board b){
         board = b;
         depth = 3;
     }
-    
+
     // Getter 
     public int GetMove() { return MiniMaxSearch(board, depth, true); }
 
@@ -20,11 +18,11 @@ public class MiniMax {
             if(!board.verifyColumnFull(i)) count++; 
         }
 
-        int[] valid_moves = new int[count-1];
+        int[] valid_moves = new int[count];
         int pos = 0;
 
         for(int j=0; j<6; j++){
-            if(!board.verifyColumnFull(j)) valid_moves[pos] = j;
+            if(!board.verifyColumnFull(j)) valid_moves[pos++] = j;
         }
         return valid_moves;
     }    
@@ -41,35 +39,33 @@ public class MiniMax {
         // Max playing
         if(MaxPlaying){ 
             int value = -100000000;
-            int random = new Random().nextInt(valid_moves.length);
-            int column = valid_moves[random];
+            int best_column = valid_moves[0];
 
             for(int i=0; i<valid_moves.length; i++){
                 Board new_board = board.makeMove(valid_moves[i], 2);
                 int new_score = MiniMaxSearch(new_board, depth-1, false);
                 if(new_score > value){
                     value = new_score;
-                    column = valid_moves[i];
+                    best_column = valid_moves[i];
                 }
             }
-            return column;
+            return best_column;
         }
 
         // Min playing
         else{
             int value = 100000000;
-            int random = new Random().nextInt(valid_moves.length);
-            int column = valid_moves[random];
+            int best_column = valid_moves[0];
 
             for(int i=0; i<valid_moves.length; i++){
                 Board new_board = board.makeMove(valid_moves[i], 1);
                 int new_score = MiniMaxSearch(new_board, depth-1, true);
                 if(new_score < value){
                     value = new_score;
-                    column = valid_moves[i];
+                    best_column = valid_moves[i];
                 }
             }
-            return column;
+            return best_column;
         }
     }
 }
