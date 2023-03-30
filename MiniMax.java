@@ -17,14 +17,14 @@ public class MiniMax {
     private int[] getValidMoves(Board board){
         int count = 0;
         for(int i=0; i<6; i++){
-            if(board.verifyColumnFull(i)) count++; 
+            if(!board.verifyColumnFull(i)) count++; 
         }
 
         int[] valid_moves = new int[count-1];
         int pos = 0;
 
         for(int j=0; j<6; j++){
-            if(board.verifyColumnFull(j)) valid_moves[pos] = j;
+            if(!board.verifyColumnFull(j)) valid_moves[pos] = j;
         }
         return valid_moves;
     }    
