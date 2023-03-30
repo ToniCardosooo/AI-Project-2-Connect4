@@ -31,14 +31,6 @@ public class Game {
         else player = 1;
     }
 
-
-    private static boolean isFinished(){
-        if (Heuristics.getScore(cur_b) == 512 || Heuristics.getScore(cur_b) == -512) return true;
-        boolean full = true;
-        for (int i = 0; i < 7; i++) if (!cur_b.verifyColumnFull(i)) full = false;
-        return full;
-    }
-
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
@@ -66,7 +58,7 @@ public class Game {
             return;
         }
 
-        while (!isFinished()){
+        while (!Heuristics.isFinished()){
             if (game.getPlayer() == 1){
                 System.out.println(game.getBoard());
                 System.out.println("It is now X's turn.");
