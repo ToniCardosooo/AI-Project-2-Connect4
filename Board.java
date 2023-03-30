@@ -76,13 +76,13 @@ public class Board{
         String s = "";
         for (int i = 0; i < 6; i++){
             for (int j = 0; j < 7; j++){
-                if (b[i][j] == 0) s += '-';
-                else if (b[i][j] == 1) s += 'X';
-                else if (b[i][j] == 2) s += 'O';
+                if (b[i][j] == 0) s += "- ";
+                else if (b[i][j] == 1) s += "X ";
+                else if (b[i][j] == 2) s += "O ";
             }
             s += "\n";
         }
-        s += "1234567\n";
+        s += "1 2 3 4 5 6 7\n";
         return s;
     }
 
