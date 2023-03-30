@@ -56,17 +56,7 @@ public class MCTSState implements Comparable<MCTSState>{
     // modifiers
     public void addToU(int x){u += x;}
     public void addToN(int x){n += x;}
-
-
-    public void expand(){
-        for (int i = 0; i < 7; i++){
-            Board aux = cur_b.makeMove(i, 2);
-            if (aux == null) continue;
-            aux.setParent(cur_b);
-            MCTSState child = new MCTSState(aux, 3-player, this);
-            children.add(child);
-        }
-    }
+    public void setChildren(PriorityQueue<MCTSState> new_children){children = new_children;}
 
     // calculate Upper Confindence Bound for Trees (UCT)
     public double getUCT(){
@@ -76,7 +66,7 @@ public class MCTSState implements Comparable<MCTSState>{
         double uct = (
             this.getU()/this.getN() + 
             MCTSConstants.EXPLORATION * Math.sqrt(
-                Math.log10(this.getN()/this.parent.getN())
+                Math.log10(this.parent.getN()) / this.getN()
             )
         );
         return uct;
@@ -85,6 +75,6 @@ public class MCTSState implements Comparable<MCTSState>{
     // comparador
     @Override
     public int compareTo(MCTSState other){
-        return Double.compare(this.getUCT(), other.getUCT());
+        return -1 * Double.compare(this.getUCT(), other.getUCT());
     }
 }
