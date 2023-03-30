@@ -37,14 +37,14 @@ public class Board{
         return bb;
     }
 
-    public Board getParent(){return parent;}
+    public Board getParent(){ return parent; }
 
-    public int[] getPiecesCol(){return pieces_column;}
+    public int[] getPiecesCol(){ return pieces_column; }
 
-    public int getLastMove(){return lastMove;}
+    public int getLastMove(){ return lastMove; }
 
     // setters
-    public void setParent(Board p){parent = p;}
+    public void setParent(Board p){ parent = p; }
 
 
     public Board makeMove(int col, int player){
