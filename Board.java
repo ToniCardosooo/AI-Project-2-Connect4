@@ -74,15 +74,19 @@ public class Board{
     @Override
     public String toString(){
         String s = "";
+        s += "# # # # # # # # # # # # # # #\n";
         for (int i = 0; i < 6; i++){
+            s += "#";
             for (int j = 0; j < 7; j++){
-                if (b[i][j] == 0) s += "- ";
-                else if (b[i][j] == 1) s += "X ";
-                else if (b[i][j] == 2) s += "O ";
+                if (b[i][j] == 0) s += "   ";
+                else if (b[i][j] == 1) s += " X ";
+                else if (b[i][j] == 2) s += " O ";
+                if (j!=6) s += "|";
             }
-            s += "\n";
+            s += "#\n";
         }
-        s += "1 2 3 4 5 6 7\n";
+        s += "# # # # # # # # # # # # # # #\n";
+        s += "  1   2   3   4   5   6   7\n";
         return s;
     }
 
