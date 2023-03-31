@@ -21,6 +21,7 @@ public class MiniMax {
         for(int i=0; i<7; i++){
             if(!board.verifyColumnFull(i)) moves.add(i);
         }
+        Collections.shuffle(moves);
         return moves;
     }
 
