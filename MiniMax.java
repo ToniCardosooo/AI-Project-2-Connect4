@@ -24,7 +24,6 @@ public class MiniMax {
         return moves;
     }
 
-
     private int MiniMaxSearch(Board board){
         long startTime = System.nanoTime();
         int value = 10000000;
