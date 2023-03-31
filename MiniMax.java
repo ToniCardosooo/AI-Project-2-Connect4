@@ -15,7 +15,7 @@ public class MiniMax {
         return MiniMaxSearch(board); 
     }
 
-    // Function that gets all the available moves for that particular turn
+    // Function that gets all the available moves in a random order
     private ArrayList<Integer> getValidMoves(Board board){
         ArrayList<Integer> moves = new ArrayList<Integer>();
         for(int i=0; i<7; i++){
@@ -25,6 +25,7 @@ public class MiniMax {
         return moves;
     }
 
+    // MiniMax function that returns the best move
     private int MiniMaxSearch(Board board){
         long startTime = System.nanoTime();
         int value = 10000000;
@@ -45,7 +46,7 @@ public class MiniMax {
         return move;
     }
 
-    // MiniMax function
+    // MiniMax function that return the best heuristic score 
     private int MiniMaxSearch(Board board, int depth, Boolean MaxPlaying){ 
         ArrayList<Integer> valid_moves = this.getValidMoves(board);
         
