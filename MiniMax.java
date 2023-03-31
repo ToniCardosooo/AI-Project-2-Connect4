@@ -18,7 +18,7 @@ public class MiniMax {
     // Function that gets all the available moves for that particular turn
     private ArrayList<Integer> getValidMoves(Board board){
         ArrayList<Integer> moves = new ArrayList<Integer>();
-        for(int i=0; i<6; i++){
+        for(int i=0; i<7; i++){
             if(!board.verifyColumnFull(i)) moves.add(i);
         }
         return moves;
@@ -26,19 +26,22 @@ public class MiniMax {
 
 
     private int MiniMaxSearch(Board board){
-        int value = 512;
+        long startTime = System.nanoTime();
+        int value = 10000000;
         int move = 0;
 
         ArrayList<Integer> moves = getValidMoves(board);
         for(int i=0; i<moves.size(); i++){
             int m = moves.get(i);
-            Board child = board.makeMove(m, 1);
+            Board child = board.makeMove(m, 2);
             int score = MiniMaxSearch(child, depth, true);
             if(score < value){
                 value = score;
                 move = m;
             }
         }
+        long endTime = System.nanoTime();
+        System.out.println("Time = " + (endTime-startTime)/1000000 + "ms");
         return move;
     }
 
@@ -47,40 +50,36 @@ public class MiniMax {
         ArrayList<Integer> valid_moves = this.getValidMoves(board);
         
         // Winning move either from Max or Mini or depth limit has been reached 
-        if(depth == 0 || Math.abs(Heuristics.getScore(board)) == 512){
+        if(depth == 0 || Heuristics.isFinished(board)){
             return Heuristics.getScore(board);
         }
         
         // Max playing
         if(MaxPlaying){ 
             int value = -10000000;
-            int best_column = valid_moves.get(0);
 
             for(int i=0; i<valid_moves.size(); i++){
                 Board new_board = board.makeMove(valid_moves.get(i), 1);
                 int new_score = MiniMaxSearch(new_board, depth-1, false);
                 if(new_score > value){
                     value = new_score;
-                    best_column = valid_moves.get(i);
                 }
             }
-            return best_column;
+            return value;
         }
 
         // Min playing
         else{
             int value = 10000000;
-            int best_column = valid_moves.get(0);
 
             for(int i=0; i<valid_moves.size(); i++){
                 Board new_board = board.makeMove(valid_moves.get(i), 2);
                 int new_score = MiniMaxSearch(new_board, depth-1, true);
                 if(new_score < value){
                     value = new_score;
-                    best_column = valid_moves.get(i);
                 }
             }
-            return best_column;
+            return value;
         }
     }
 }
