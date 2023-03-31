@@ -84,7 +84,6 @@ public class Game {
                 if (game.getAlg() == 1){
                     MiniMax minimax = new MiniMax(cur_b, 6);
                     col = minimax.GetMove();
-                    System.out.println("col = "+col);
                 }
                 else if (game.getAlg() == 2){
                     // col = alphabeta
