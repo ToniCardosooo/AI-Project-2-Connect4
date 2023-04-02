@@ -102,7 +102,6 @@ public class Game {
             }
         }
     
-        System.out.println(game.getBoard());
         if (Heuristics.getScore(cur_b) == 0)
                 System.out.println("It's a draw!");
         else if (Heuristics.getScore(cur_b) == 512)

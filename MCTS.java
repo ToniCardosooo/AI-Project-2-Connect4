@@ -48,7 +48,7 @@ public class MCTS{
 
     private MCTSState expand(MCTSState leaf){
         if (Heuristics.isFinished(leaf.getBoardObject()))
-            return null;
+            return leaf;
 
         Board leaf_b = leaf.getBoardObject();
         int player = leaf.getPlayer();
@@ -105,21 +105,9 @@ public class MCTS{
     public int playMCTS(){
         for (int i = 0; i < MCTSConstants.MCTS_ITERATIONS; i++){
             MCTSState leaf = selection();
-            
-            // initialize with a value in case the leaf is terminal
-            // leaf does have a child
-            if (!Heuristics.isFinished(leaf.getBoardObject())){
-                MCTSState child = expand(leaf);
-                int rollout_value = rollout(child);
-                backpropagate(child, rollout_value);
-            }
-            // leaf is a final state
-            else{
-                int outcome = 0; // board full and tie
-                if (Heuristics.getScore(leaf.getBoardObject()) == +512) outcome = 1; // X won
-                else if (Heuristics.getScore(leaf.getBoardObject()) == -512) outcome = 2; // O won
-                backpropagate(leaf, outcome);
-            }   
+            MCTSState child = expand(leaf);
+            int rollout_value = rollout(child);
+            backpropagate(child, rollout_value);
         }
 
         // move with highest UCT
