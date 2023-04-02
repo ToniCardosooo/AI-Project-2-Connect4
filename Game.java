@@ -58,26 +58,28 @@ public class Game {
             return;
         }
 
+        System.out.println(game.getBoard());
         while (!Heuristics.isFinished(cur_b)){
             if (game.getPlayer() == 1){
-                System.out.println(game.getBoard());
+                
                 System.out.println("It is now X's turn.");
-                System.out.println("Make a move by choosing your coordinate to play (1 to 7).");
+                System.out.print("Make a move by choosing a column to play (1 to 7): ");
 
                 int col = in.nextInt() - 1;
                 Board b = game.getBoard();
                 while (b.makeMove(col, player) == null) {
                     System.out.println("Invalid move.");
-                    System.out.println("Please choose your coordinate to play (1 to 7) on an available column.");
+                    System.out.print("Please play on an available column (1 to 7): ");
                     col = in.nextInt() - 1;
                     b = game.getBoard();
                 }
                 game.setBoard(b.makeMove(col, player));
+                System.out.println(game.getBoard());
+
                 game.switchPlayer();
             }
 
             else{
-                System.out.println(game.getBoard());
                 System.out.println("It is now O's turn.");
 
                 int col = -1;
@@ -89,14 +91,14 @@ public class Game {
                     // col = alphabeta
                 }
                 else if (game.getAlg() == 3){
-                    MCTS carlotes = new MCTS(cur_b);
-                    col = carlotes.playMCTS();
+                    MCTS carl = new MCTS(cur_b);
+                    col = carl.playMCTS();
                 }
 
                 Board b = game.getBoard();
                 game.setBoard(b.makeMove(col, player));
+                System.out.println(game.getBoard());
                 game.switchPlayer();
-
             }
         }
     

@@ -1,4 +1,4 @@
-import java.util.PriorityQueue;
+import java.util.ArrayList;
 
 public class MCTSState implements Comparable<MCTSState>{
 
@@ -6,7 +6,7 @@ public class MCTSState implements Comparable<MCTSState>{
     private Board cur_b;
     private int player;
     private MCTSState parent;
-    private PriorityQueue<MCTSState> children;
+    private ArrayList<MCTSState> children;
     private double u, n;
 
     // constructor
@@ -14,7 +14,7 @@ public class MCTSState implements Comparable<MCTSState>{
         cur_b = b;
         player = play;
         parent = p;
-        children = new PriorityQueue<MCTSState>();
+        children = new ArrayList<MCTSState>();
         u = 0; n = 0;
     }
 
@@ -23,9 +23,9 @@ public class MCTSState implements Comparable<MCTSState>{
     public int getPlayer(){return player;}
     public MCTSState getParent(){return parent;}
 
-    public PriorityQueue<MCTSState> getChildren(){return children;}
-    public PriorityQueue<MCTSState> getChildrenCopy(){
-        PriorityQueue<MCTSState> copy = new PriorityQueue<>();
+    public ArrayList<MCTSState> getChildren(){return children;}
+    public ArrayList<MCTSState> getChildrenCopy(){
+        ArrayList<MCTSState> copy = new ArrayList<>();
         for (MCTSState s : children)
             copy.add(s);
         return copy;
@@ -37,7 +37,7 @@ public class MCTSState implements Comparable<MCTSState>{
     // modifiers
     public void addToU(int x){u += x;}
     public void addToN(int x){n += x;}
-    public void setChildren(PriorityQueue<MCTSState> new_children){children = new_children;}
+    public void setChildren(ArrayList<MCTSState> new_children){children = new_children;}
 
     // calculate Upper Confindence Bound for Trees (UCT)
     public double getUCT(){
