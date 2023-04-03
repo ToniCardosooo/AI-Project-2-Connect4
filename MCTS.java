@@ -8,9 +8,7 @@ public class MCTS{
         root = new MCTSState(r, 2, null);
     }
 
-    
-
-    private MCTSState selection(){
+    private MCTSState select(){
         MCTSState cur = root;
 
         // while it's not a leaf
@@ -96,7 +94,7 @@ public class MCTS{
 
     public int playMCTS(){
         for (int i = 0; i < MCTSConstants.MCTS_ITERATIONS; i++){
-            MCTSState leaf = selection();
+            MCTSState leaf = select();
             MCTSState child = expand(leaf);
             int rollout_value = rollout(child);
             backpropagate(child, rollout_value);
