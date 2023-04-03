@@ -8,25 +8,17 @@ public class MCTS{
         root = new MCTSState(r, 2, null);
     }
 
-    // function that gets all the available moves for that particular turn
-    private ArrayList<Integer> getValidMoves(Board board){
-        ArrayList<Integer> moves = new ArrayList<Integer>();
-        for(int i=0; i<7; i++){
-            if(!board.verifyColumnFull(i)) moves.add(i);
-        }
-        Collections.shuffle(moves);
-        return moves;
-    }
+    
 
     private MCTSState selection(){
         MCTSState cur = root;
 
         // while it's not a leaf
         while (cur.getChildren().size() > 0){
-            ArrayList<MCTSState> cur_children = cur.getChildrenCopy();
+            ArrayList<MCTSState> cur_children = cur.getChildren();
             Collections.sort(cur_children);
 
-            // gather in the list all the best nodes
+            // gather in a list all the best nodes
             ArrayList<MCTSState> max_nodes = new ArrayList<MCTSState>();
             double max_value = cur_children.get(0).getUCT();
             for (int i = 0; i < cur_children.size(); i++){
@@ -55,7 +47,7 @@ public class MCTS{
         ArrayList<MCTSState> leaf_children = leaf.getChildren();
 
         // create children
-        for (int i : getValidMoves(leaf_b)){
+        for (int i : leaf_b.getValidMoves()){
             Board aux = leaf_b.makeMove(i, player);
             aux.setParent(leaf_b);
             MCTSState child = new MCTSState(aux, 3-player, leaf);
@@ -74,7 +66,7 @@ public class MCTS{
 
         // randomly play
         while (!Heuristics.isFinished(cur)){
-            int rand_col = getValidMoves(cur).get(0);
+            int rand_col = cur.getValidMoves().get(0);
             cur = cur.makeMove(rand_col, player);
             player = 3-player;
         }

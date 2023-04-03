@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class Board{
     private int[][] b;
     private Board parent;
@@ -54,6 +57,16 @@ public class Board{
         newboard[5-n][col] = player;
 
         return new Board(newboard, col);
+    }
+
+    // function that gets all the available moves for that particular turn
+    public ArrayList<Integer> getValidMoves(){
+        ArrayList<Integer> moves = new ArrayList<Integer>();
+        for(int i=0; i<7; i++){
+            if(!verifyColumnFull(i)) moves.add(i);
+        }
+        Collections.shuffle(moves);
+        return moves;
     }
 
     // to check if boards are equal
