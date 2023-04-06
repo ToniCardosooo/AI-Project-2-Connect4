@@ -72,7 +72,7 @@ public class Heuristics {
                     else return -1;
                 }
                 if (bb[i][j+3] != 0 && bb[i][j+3] == bb[i-1][j+2] && bb[i][j+3] == bb[i-2][j+1] && bb[i][j+3] == bb[i-3][j]) {
-                    if (bb[i][j] == 1) return 1;
+                    if (bb[i][j+3] == 1) return 1;
                     else return -1;
                 }
             }

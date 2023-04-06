@@ -100,8 +100,15 @@ public class MCTS{
             backpropagate(child, rollout_value);
         }
 
-        // move with highest UCT
-        MCTSState result = root.getChildren().get(0);
+        // move with highest number of rollouts
+        MCTSState result = null;
+        double top_number_rollouts = 0.0;
+        for (MCTSState child : root.getChildren()){
+            if (child.getN() > top_number_rollouts){
+                top_number_rollouts = child.getN();
+                result = child;
+            }
+        }
         return result.getBoardObject().getLastMove();
     }
 }

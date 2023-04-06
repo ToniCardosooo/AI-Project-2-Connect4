@@ -16,7 +16,6 @@ public class MiniMax {
     }
 
     private int MiniMaxSearch(Board board){
-        long startTime = System.nanoTime();
         int value = 10000000;
         int move = 0;
 
@@ -30,8 +29,6 @@ public class MiniMax {
                 move = m;
             }
         }
-        long endTime = System.nanoTime();
-        System.out.println("Time = " + (endTime-startTime)/1000000 + "ms");
         return move;
     }
 
