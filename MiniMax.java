@@ -11,29 +11,33 @@ public class MiniMax {
     }
 
     // Getter 
-    public int GetMove() { 
-        return MiniMaxSearch(board); 
+    public int GetMove(Boolean AlphaBeta) { 
+        return MiniMaxSearch(board, AlphaBeta); 
     }
 
-    private int MiniMaxSearch(Board board){
+    private int MiniMaxSearch(Board board, Boolean AlphaBeta){
         int value = 10000000;
         int move = 0;
+        int alpha = -10000000;
+        int beta = 10000000;
 
         ArrayList<Integer> moves = board.getValidMoves();
         for(int i=0; i<moves.size(); i++){
             int m = moves.get(i);
             Board child = board.makeMove(m, 2);
-            int score = MiniMaxSearch(child, depth, true);
-            if(score < value){
+            int score = MiniMaxSearch(child, depth, true, AlphaBeta, alpha, beta);
+            if (score < value){
                 value = score;
+                beta = Math.min(beta, value);
                 move = m;
             }
+            if (AlphaBeta && value <= alpha) return move;
         }
         return move;
     }
 
     // MiniMax function
-    private int MiniMaxSearch(Board board, int depth, Boolean MaxPlaying){ 
+    private int MiniMaxSearch(Board board, int depth, Boolean MaxPlaying, Boolean AlphaBeta, int alpha, int beta){ 
         ArrayList<Integer> valid_moves = board.getValidMoves();
         
         // Winning move either from Max or Mini or depth limit has been reached 
@@ -47,10 +51,12 @@ public class MiniMax {
 
             for(int i=0; i<valid_moves.size(); i++){
                 Board new_board = board.makeMove(valid_moves.get(i), 1);
-                int new_score = MiniMaxSearch(new_board, depth-1, false);
+                int new_score = MiniMaxSearch(new_board, depth-1, false, AlphaBeta, alpha, beta);
                 if(new_score > value){
                     value = new_score;
+                    alpha = Math.max(alpha, value);
                 }
+                if (AlphaBeta && value >= beta) return value;
             }
             return value;
         }
@@ -61,10 +67,12 @@ public class MiniMax {
 
             for(int i=0; i<valid_moves.size(); i++){
                 Board new_board = board.makeMove(valid_moves.get(i), 2);
-                int new_score = MiniMaxSearch(new_board, depth-1, true);
+                int new_score = MiniMaxSearch(new_board, depth-1, true, AlphaBeta, alpha, beta);
                 if(new_score < value){
                     value = new_score;
+                    beta = Math.min(beta, value);
                 }
+                if (AlphaBeta && value <= alpha) return value;
             }
             return value;
         }

@@ -85,10 +85,11 @@ public class Game {
                 int col = -1;
                 if (game.getAlg() == 1){
                     MiniMax minimax = new MiniMax(cur_b, 6);
-                    col = minimax.GetMove();
+                    col = minimax.GetMove(false);
                 }
                 else if (game.getAlg() == 2){
-                    // col = alphabeta
+                    MiniMax minimax = new MiniMax(cur_b, 6);
+                    col = minimax.GetMove(true);
                 }
                 else if (game.getAlg() == 3){
                     MCTS carl = new MCTS(cur_b);
