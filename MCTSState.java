@@ -22,15 +22,7 @@ public class MCTSState implements Comparable<MCTSState>{
     public Board getBoardObject(){return cur_b;}
     public int getPlayer(){return player;}
     public MCTSState getParent(){return parent;}
-
     public ArrayList<MCTSState> getChildren(){return children;}
-    /* public ArrayList<MCTSState> getChildrenCopy(){
-        ArrayList<MCTSState> copy = new ArrayList<>();
-        for (MCTSState s : children)
-            copy.add(s);
-        return copy;
-    } */
-
     public double getU(){return u;}
     public double getN(){return n;}
 
