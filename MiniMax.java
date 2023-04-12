@@ -15,23 +15,12 @@ public class MiniMax {
         return MiniMaxSearch(board); 
     }
 
-    // Function that gets all the available moves in a random order
-    private ArrayList<Integer> getValidMoves(Board board){
-        ArrayList<Integer> moves = new ArrayList<Integer>();
-        for(int i=0; i<7; i++){
-            if(!board.verifyColumnFull(i)) moves.add(i);
-        }
-        Collections.shuffle(moves);
-        return moves;
-    }
-
     // MiniMax function that returns the best move
     private int MiniMaxSearch(Board board){
-        long startTime = System.nanoTime();
         int value = 10000000;
         int move = 0;
 
-        ArrayList<Integer> moves = getValidMoves(board);
+        ArrayList<Integer> moves = board.getValidMoves();
         for(int i=0; i<moves.size(); i++){
             int m = moves.get(i);
             Board child = board.makeMove(m, 2);
@@ -41,14 +30,12 @@ public class MiniMax {
                 move = m;
             }
         }
-        long endTime = System.nanoTime();
-        System.out.println("Time = " + (endTime-startTime)/1000000 + "ms");
         return move;
     }
 
     // MiniMax function that return the best heuristic score 
     private int MiniMaxSearch(Board board, int depth, Boolean MaxPlaying){ 
-        ArrayList<Integer> valid_moves = this.getValidMoves(board);
+        ArrayList<Integer> valid_moves = board.getValidMoves();
         
         // Winning move either from Max or Mini or depth limit has been reached 
         if(depth == 0 || Heuristics.isFinished(board)){
