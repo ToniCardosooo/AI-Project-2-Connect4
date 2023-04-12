@@ -29,7 +29,6 @@ public class MCTSState implements Comparable<MCTSState>{
     // modifiers
     public void addToU(int x){u += x;}
     public void addToN(int x){n += x;}
-    public void setChildren(ArrayList<MCTSState> new_children){children = new_children;}
 
     // calculate Upper Confindence Bound for Trees (UCT)
     public double getUCT(){
