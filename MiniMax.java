@@ -15,6 +15,7 @@ public class MiniMax {
         return MiniMaxSearch(board, AlphaBeta); 
     }
 
+    // MiniMax function that returns the best move
     private int MiniMaxSearch(Board board, Boolean AlphaBeta){
         int value = 10000000;
         int move = 0;
