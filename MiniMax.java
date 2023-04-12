@@ -17,10 +17,10 @@ public class MiniMax {
 
     // MiniMax function that returns the best move
     private int MiniMaxSearch(Board board, Boolean AlphaBeta){
-        int value = 10000000;
+        int value = 513;
         int move = 0;
-        int alpha = -10000000;
-        int beta = 10000000;
+        int alpha = -513;
+        int beta = 513;
 
         ArrayList<Integer> moves = board.getValidMoves();
         for(int i=0; i<moves.size(); i++){
@@ -48,7 +48,7 @@ public class MiniMax {
         
         // Max playing
         if(MaxPlaying){ 
-            int value = -10000000;
+            int value = -513;
 
             for(int i=0; i<valid_moves.size(); i++){
                 Board new_board = board.makeMove(valid_moves.get(i), 1);
