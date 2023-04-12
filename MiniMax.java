@@ -64,7 +64,7 @@ public class MiniMax {
 
         // Min playing
         else{
-            int value = 10000000;
+            int value = 513;
 
             for(int i=0; i<valid_moves.size(); i++){
                 Board new_board = board.makeMove(valid_moves.get(i), 2);
