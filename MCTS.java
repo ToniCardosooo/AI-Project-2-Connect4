@@ -68,6 +68,9 @@ public class MCTS{
             cur = cur.makeMove(rand_col, player);
             player = 3-player;
         }
+        
+        // tie
+        if (Math.abs(Heuristics.getScore(cur)) != 512) return 0;
 
         // return the player that won
         return 3-player;
