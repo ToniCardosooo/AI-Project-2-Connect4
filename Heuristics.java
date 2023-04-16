@@ -10,37 +10,6 @@ public class Heuristics {
     private static int win(Board b){
         int[][] bb = b.getBoard();
 
-        /*int j = b.getLastMove();
-        int i = 6 - b.getPiecesCol()[j];
-
-        // verify midle moves and backwards too
-
-        if (i < 3) {
-            if (bb[i][j] != 0 && bb[i][j] == bb[i+1][j] && bb[i][j] == bb[i+2][j] && bb[i][j] == bb[i+3][j]) {
-                if (bb[i][j] == 1) return 1;
-                else return -1;
-            }
-            if (j < 4) {
-                if (bb[i][j] != 0 && bb[i][j] == bb[i+1][j+1] && bb[i][j] == bb[i+2][j+2] && bb[i][j] == bb[i+3][j+3]) {
-                    if (bb[i][j] == 1) return 1;
-                    else return -1;
-                }
-            }
-            else {
-                if (bb[i][j] != 0 && bb[i][j] == bb[i+1][j-1] && bb[i][j] == bb[i+2][j-2] && bb[i][j] == bb[i+3][j-3]) {
-                    if (bb[i][j] == 1) return 1;
-                    else return -1;
-                }
-            }
-        }
-
-        if (j < 4) {
-            if (bb[i][j] != 0 && bb[i][j] == bb[i][j+1] && bb[i][j] == bb[i][j+2] && bb[i][j] == bb[i][j+3]) {
-                if (bb[i][j] == 1) return 1;
-                else return -1;
-            }
-        }*/
-
         //horizontal
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 4; j++) {
