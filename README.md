@@ -18,18 +18,20 @@ Para poder executar cada problema é primeiro necessário compilar todos os fich
 
 Após a compilação de todos os ficheiros, é possível, finalmente, executá-los. Foram desenvolvidos os seguintes algoritmos:
 - Minimax
-- Minimax com Alpha-Beta cuts
+- Minimax com cortes Alpha-Beta
 - Monte Carlo Tree Search
 
-Para a execução de cada um, utilizar o seguinte formato de entrada:
-`java Game type`, onde "type" deve ser substituido pelo nome do algoritmo desejado.
+Para a execução de cada um, utilizar o seguinte formato de entrada `java Game type`, onde "type" deve ser substituido pelo nome do algoritmo desejado:
+- `java Game MiniMax`
+- `java Game AlphaBeta`
+- `java Game MCTS`
 
 O programa irá aguardar o primeiro movimento do utilizador. O mesmo deve ser fornecido com um número de 1 a 7, representante da coluna onde se quer jogar. 
 
 Exemplo:
 
-`It is now X's turn.
-Make a move by choosing your coordinate to play (1 to 7).`
+`It is now X's turn.`  
+`Make a move by choosing your coordinate to play (1 to 7):`
 
 `2`
 
