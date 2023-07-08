@@ -37,3 +37,4 @@ Exemplo:
 
 É esperado que, após a jogada do utilizador, seja impresso o tabuleiro atual e, de seguida, o tabuleiro com a jogada do algoritmo adversário. Isto repete-se até que um dos lados ganhe ou o tabuleiro fique cheio, com um empate.
 
+<sub><sup>README.md by Bárbara Santos</sup></sub>
